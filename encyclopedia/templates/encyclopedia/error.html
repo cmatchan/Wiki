@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Site Does Not Exist!
+{% endblock %}
+
+{% block search %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        {{ form.search.errors }}
+        {{ form.search }}
+    </form>
+{% endblock %}
+
+{% block body %}
+    <head>
+        <h1>Error</h1>
+    </head>
+    <body>
+        <p>The requested page, "{{ site }}", does not exist!</p>
+    </body>
+{% endblock %}

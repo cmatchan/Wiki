@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Editing {{ title }}
+{% endblock %}
+
+{% block search %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        {{ form.search.errors }}
+        {{ form.search }}
+    </form>
+{% endblock %}
+
+{% block body %}
+    <h1>Editing {{ title }}</h1>
+    <form action="{% url 'edit_page' title %}" method=post>
+        {% csrf_token %}
+        {{ edit_form.content.errors }}
+        {{ edit_form.content.label_tag }}
+        <br>
+        {{ edit_form.content }}
+        <br>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

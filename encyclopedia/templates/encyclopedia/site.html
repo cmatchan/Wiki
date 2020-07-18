@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block search %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        {{ form.search.errors }}
+        {{ form.search }}
+    </form>
+{% endblock %}
+
+{% block body %}
+    {{ site|safe }}
+    <form action="{% url 'edit_page' title %}" method="get">
+      <button type="submit">Edit Page</button>
+    </form>
+{% endblock %}

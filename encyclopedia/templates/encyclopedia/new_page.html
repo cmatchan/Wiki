@@ -1,0 +1,31 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block search %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        {{ form.search.errors }}
+        {{ form.search }}
+    </form>
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Page</h1>
+    <form action="{% url 'new_page' %}" method=post>
+        {% csrf_token %}
+        {{ page_form.title.errors }}
+        {{ page_form.title.label_tag }}
+        <br>
+        {{ page_form.title }}
+        <br><br>
+        {{ page_form.content.errors }}
+        {{ page_form.content.label_tag }}
+        <br>
+        {{ page_form.content }}
+        <br>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

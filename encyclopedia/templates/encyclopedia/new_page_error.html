@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page Error
+{% endblock %}
+
+{% block search %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        {{ form.search.errors }}
+        {{ form.search }}
+    </form>
+{% endblock %}
+
+{% block body %}
+    <head>
+        <h1>Create New Page Error</h1>
+    </head>
+    <body>
+        <p>The site "<a href="{% url 'site' site %}">{{ site }}</a>" already exist!</p>
+    </body>
+{% endblock %}

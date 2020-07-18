@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block search %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        {{ form.search.errors }}
+        {{ form.search }}
+    </form>
+{% endblock %}
+
+{% block body %}
+    <h1>Search Results</h1>
+    <ul>
+        {% for entry in entries %}
+            {% if query|lower in entry|lower %}
+                <li><a href="{% url 'site' entry %}">{{ entry }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
